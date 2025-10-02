@@ -1,4 +1,4 @@
- deepspeed --include=localhost:0 training/main.py \
+ ( deepspeed --include=localhost:0 training/main.py \
   --data_path ~/xuerong/TRACE/data \
   --dataset_name C-STANCE,FOMC,MeetingBank,Py150,ScienceQA,NumGLUE-cm,NumGLUE-ds,20Minuten \
   --model_name_or_path ~/xuerong/TRACE/TinyLlama-1.1B-Chat-v1.0 \
