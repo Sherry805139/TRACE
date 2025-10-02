@@ -1,0 +1,21 @@
+ deepspeed --include=localhost:0 training/main.py \
+  --data_path ~/xuerong/TRACE/data \
+  --dataset_name C-STANCE,FOMC,MeetingBank,Py150,ScienceQA,NumGLUE-cm,NumGLUE-ds,20Minuten \
+  --model_name_or_path ~/xuerong/TRACE/TinyLlama-1.1B-Chat-v1.0 \
+  --per_device_train_batch_size 1 \
+  --per_device_eval_batch_size 4 \
+  --max_prompt_len 512 \
+  --max_ans_len 512 \
+  --learning_rate 1e-4 \
+  --weight_decay 0.0 \
+  --num_train_epochs 3 \
+  --gradient_accumulation_steps 8 \
+  --lr_scheduler_type cosine \
+  --num_warmup_steps 0 \
+  --seed 1234 \
+  --zero_stage 2 \
+  --deepspeed \
+  --print_loss \
+  --CL_method lora \
+  --output_dir ~/xuerong/TRACE/output > ~/xuerong/TRACE/output/train.log 2>&1 | tee ~/xuerong/TRACE/output/train.log ) &
+tail -f ~/xuerong/TRACE/output/train.log
